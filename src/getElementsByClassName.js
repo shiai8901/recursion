@@ -7,4 +7,22 @@
 var getElementsByClassName = function(className
 ) {
   // your code here
+  var result = [];
+
+  function depthFirstReversal(node, func) {
+    func(node);
+    node = node.firstChild;
+    while (node) {
+      depthFirstReversal(node, func);
+      node = node.nextSibling;
+    }
+  }
+
+  depthFirstReversal(document.body, function (node) {
+    if(node.classList && node.classList.contains(className)) {
+      result.push(node);
+    }
+  });
+
+  return result;
 };
